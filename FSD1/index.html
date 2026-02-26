@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TravelPro - Explore the World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: white;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav h2 {
+            color: #008080;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #008080;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: #ff6b00;
+            padding: 12px 25px;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e55d00;
+        }
+
+        /* Section */
+        .section {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #333;
+        }
+
+        /* Cards */
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h2>TravelPro</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Discover Beautiful Places</h1>
+            <p>Travel the world with comfort and style</p>
+            <a href="#" class="btn">Start Exploring</a>
+        </div>
+    </div>
+
+    <!-- Destinations Section -->
+    <div class="section">
+        <h2>Popular Destinations</h2>
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad">
+                <h3>Paris</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bada">
+                <h3>Maldives</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+                <h3>Dubai</h3>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 TravelPro | Designed with ❤️
+    </footer>
+
+</body>
+</html>

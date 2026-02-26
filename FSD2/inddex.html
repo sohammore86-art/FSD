@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .add-btn {
+            background-color: #008080;
+            color: white;
+            width: 100%;
+        }
+
+        .add-btn:hover {
+            background-color: #006666;
+        }
+
+        .contact {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            font-size: 14px;
+        }
+
+        .actions button {
+            margin-left: 5px;
+        }
+
+        .edit-btn {
+            background-color: orange;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .search {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Contact Manager</h2>
+
+    <!-- Form -->
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="number" id="phone" placeholder="Phone Number">
+
+    <button class="add-btn" onclick="addContact()">Add Contact</button>
+
+    <!-- Search -->
+    <input type="text" class="search" id="search" placeholder="Search by name or email" onkeyup="renderContacts()">
+
+    <!-- Contact List -->
+    <div id="contactList"></div>
+</div>
+
+<script>
+    let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    let editIndex = -1;
+
+    function saveToStorage() {
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
+
+    function addContact() {
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+
+        if (name === "" || email === "" || phone === "") {
+            alert("All fields are required!");
+            return;
+        }
+
+        let contact = { name, email, phone };
+
+        if (editIndex === -1) {
+            contacts.push(contact);
+        } else {
+            contacts[editIndex] = contact;
+            editIndex = -1;
+        }
+
+        saveToStorage();
+        clearForm();
+        renderContacts();
+    }
+
+    function renderContacts() {
+        let list = document.getElementById("contactList");
+        let search = document.getElementById("search").value.toLowerCase();
+        list.innerHTML = "";
+
+        contacts.forEach((contact, index) => {
+            if (
+                contact.name.toLowerCase().includes(search) ||
+                contact.email.toLowerCase().includes(search)
+            ) {
+                list.innerHTML += `
+                    <div class="contact">
+                        <div class="contact-info">
+                            <strong>${contact.name}</strong><br>
+                            ${contact.email}<br>
+                            ${contact.phone}
+                        </div>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="editContact(${index})">Edit</button>
+                            <button class="delete-btn" onclick="deleteContact(${index})">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    }
+
+    function deleteContact(index) {
+        contacts.splice(index, 1);
+        saveToStorage();
+        renderContacts();
+    }
+
+    function editContact(index) {
+        document.getElementById("name").value = contacts[index].name;
+        document.getElementById("email").value = contacts[index].email;
+        document.getElementById("phone").value = contacts[index].phone;
+        editIndex = index;
+    }
+
+    function clearForm() {
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("phone").value = "";
+    }
+
+    renderContacts();
+</script>
+
+</body>
+</html>
